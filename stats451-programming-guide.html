@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Daniel Iong" />
+
+
+<title>Programming Guide for STATS 451</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STATS 451</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="stats451-programming-guide.html">Programming Guide</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Programming Guide for STATS 451</h1>
+<h4 class="author">Daniel Iong</h4>
+
+</div>
+
+
+<div id="remarks" class="section level1">
+<h1>Remarks</h1>
+<ul>
+<li><p>It seems like alot of you are proficient in programming but not necessarily familiar with R and are worried it may hinder your performance in this class. I tried to look for some R resources for you all but most of them might be too basic for those who know programming or included too much information about R that you do not necessarily need (although may be good to learn). Therefore, I created this no-nonsense guide that only includes concepts I think are essential/helpful for the course. I will try to draw parallels between Python/C++ and R whenever possible for those of you who are proficient in these languages.</p></li>
+<li><p>I will constantly update this guide as the course progresses and students ask me more questions about R. Most of the R functions you will use are closely tied to the statistical concepts that you learn about in lecture. Therefore, I will add them to this guide after you have learned about the concepts in lecture to not confuse/stress you all out.</p></li>
+<li><p>I have omitted programming concepts that are not specific to R like for loops, if statements, etc and can be easily googled.</p></li>
+<li><p>If you learned C++ by taking EECS 280/281, don’t even stress out about the programming in this course. Come to office hours and teach me about C++ please.</p></li>
+<li><p>You may use Python for the homeworks but R may be worth learning because we will be using <strong>stan</strong> later in the course and in my opinion, it is easier to use in R. (There is a Python version of it though.)</p></li>
+</ul>
+<p><strong>tl;dr</strong> Don’t worry about the programming in this course. This guide includes most of the R concepts you need to know.</p>
+</div>
+<div id="data-typesstructures-in-r" class="section level1">
+<h1>Data Types/Structures in R</h1>
+<ul>
+<li>R has 6 basic data types (character, numeric, integer, logical, complex). We will primarily be concerned with the numeric, logical, and integer data type.</li>
+</ul>
+<p><strong>Data Structures in R</strong></p>
+<ol style="list-style-type: decimal">
+<li>atomic vector</li>
+<li>list</li>
+<li>matrix</li>
+<li>data frame</li>
+<li>factors</li>
+</ol>
+<p>We will discuss these one-by-one below.</p>
+<div id="atomic-vector" class="section level2">
+<h2>Atomic Vector</h2>
+<ul>
+<li><p>These are kind of like lists in Python and arrays/vectors in C++.</p></li>
+<li><p><strong>Atomic</strong> means they can only hold data of a single data type.</p></li>
+</ul>
+<p>To create an atomic vector, we use the function <code>c()</code>. The “c” here stands for combine or concatenate.</p>
+<pre class="r"><code>a &lt;- c(1,2,3,4)</code></pre>
+<div id="indexingsubsetting" class="section level3">
+<h3>Indexing/Subsetting</h3>
+<ul>
+<li>R uses one-based indexing so be careful of this if you are coming from a 0-based indexing language like Python or C++.</li>
+</ul>
+<p>To index an element in an (atomic) vector, we use <code>[]</code>. For example, to index the first element of <code>a</code>:</p>
+<pre class="r"><code>a[1]</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>To index a vector with a vector of indices:</p>
+<pre class="r"><code>a[1:3] # Here 1:3 is the same as c(1, 2, 3). This will be discussed later. </code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<p><code>a[-i]</code> will return <code>a</code> with the element in the <span class="math inline">\(i^{th}\)</span> index deleted. In general, <code>a[-index_vec]</code> will return <code>a</code> with the elements in the indices in <code>index_vec</code> deleted.</p>
+<pre class="r"><code>a[-2]</code></pre>
+<pre><code>## [1] 1 3 4</code></pre>
+<pre class="r"><code>a[-(1:3)]</code></pre>
+<pre><code>## [1] 4</code></pre>
+<p>Alternatively, you can index vectors using logical statements. There are two ways to do this.</p>
+<pre class="r"><code>a[a &lt; 3]</code></pre>
+<pre><code>## [1] 1 2</code></pre>
+<pre class="r"><code>which(a &lt; 3)</code></pre>
+<pre><code>## [1] 1 2</code></pre>
+</div>
+<div id="useful-vectors" class="section level3">
+<h3>Useful vectors</h3>
+<p>There are several functions in R that output useful vectors. Some of the ones that will be useful for this course are: <code>rep</code>, <code>seq</code>.</p>
+<p><code>rep</code> replicates a given object a specified amount of times.</p>
+<pre class="r"><code>rep(x = 2, times = 10) # or just rep(2, 10) </code></pre>
+<pre><code>##  [1] 2 2 2 2 2 2 2 2 2 2</code></pre>
+<pre class="r"><code># Can also replicate vectors 
+rep(a, 2) # create vector with a replicated twice.</code></pre>
+<pre><code>## [1] 1 2 3 4 1 2 3 4</code></pre>
+<p><code>seq</code> creates (incremented) sequences. It is like <code>range</code> in Python. However, the <code>seq</code> function is inclusive. (i.e. <code>range(1,10)</code> only returns a list with numbers 1 - 9, whereas <code>seq(1,10)</code> will return a vector with numbers 1- 10.)</p>
+<pre class="r"><code>seq(from = 1, to = 10, by = 2)</code></pre>
+<pre><code>## [1] 1 3 5 7 9</code></pre>
+<p>To make sequence of consecutive numbers, you can use <code>a:b</code> (This is usually used in for loops).</p>
+<pre class="r"><code>1:10</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>for (i in 1:4) {
+  print(i)
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4</code></pre>
+</div>
+<div id="vector-operations" class="section level3">
+<h3>Vector operations</h3>
+<ul>
+<li>You may add, subtract, multiply, divide vectors element-wise by using <code>+, -, *, /,</code></li>
+</ul>
+<pre class="r"><code># create a vector and add it to a 
+b &lt;- c(2, 3, 4, 5)
+a + b</code></pre>
+<pre><code>## [1] 3 5 7 9</code></pre>
+<ul>
+<li><strong>BE CAREFUL:</strong> In R, adding vectors of different lengths is valid although it gives a warning. The smaller vector is duplicated to match the length of the larger vector and then added to it. This is also true for other vector operations.</li>
+</ul>
+<pre class="r"><code>c &lt;- c(2, 3, 4, 5, 6, 7, 8)
+a_plus_c &lt;- a + c</code></pre>
+<pre><code>## Warning in a + c: longer object length is not a multiple of shorter object
+## length</code></pre>
+<pre class="r"><code>a_plus_c</code></pre>
+<pre><code>## [1]  3  5  7  9  7  9 11</code></pre>
+<p>In this example, <code>a + c = (1, 2, 3, 4, 1, 2, 3) + (2, ,3, 4, 5 ,6, 7, 8)</code>.</p>
+</div>
+<div id="appendingremoving" class="section level3">
+<h3>Appending/Removing</h3>
+<ul>
+<li>The syntax for appending and removing elements isn’t as nice as in Python.</li>
+</ul>
+<pre class="r"><code>### To append
+# There is an append() function, but this method of appending suffices.
+a &lt;- c(a, 5)
+a</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<pre class="r"><code># Alternatively,
+a[6] &lt;- 6
+a</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<pre class="r"><code>a &lt;- c(a, 7:9) # can also append vectors to vectors
+a</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
+<pre class="r"><code># Remove second element in R 
+a &lt;- a[-2]
+a</code></pre>
+<pre><code>## [1] 1 3 4 5 6 7 8 9</code></pre>
+<pre class="r"><code># Remove first 3 elements in R
+a &lt;- a[-(1:3)]
+a</code></pre>
+<pre><code>## [1] 5 6 7 8 9</code></pre>
+</div>
+<div id="misc." class="section level3">
+<h3>Misc.</h3>
+<ul>
+<li>Nesting vectors inside vectors will just create one large vector. In other words, (atomic) vectors are flat.</li>
+</ul>
+<pre class="r"><code>a &lt;- c(1, 2, c(3, c(4)))
+a</code></pre>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<pre class="r"><code>length(a)</code></pre>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li><code>length</code> gives you the length of the vector.</li>
+</ul>
+<pre class="r"><code>a &lt;- c(1,2,3,4)
+length(a)</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+</div>
+<div id="lists" class="section level2">
+<h2>Lists</h2>
+<ul>
+<li>Lists can hold elements of different types. Lists are like dictionaries in Python.</li>
+<li>Lists are R’s most flexible object, but it also uses the most memory.</li>
+</ul>
+<p>To create a list:</p>
+<pre class="r"><code># Create empty list 
+x &lt;- list()
+x</code></pre>
+<pre><code>## list()</code></pre>
+<p>You can also create lists with specified values.</p>
+<pre class="r"><code># Create list with one numerical vector and one character vector
+x &lt;- list(c(1,2,3), c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;))
+x</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</code></pre>
+<div id="indexing" class="section level3">
+<h3>Indexing</h3>
+<ul>
+<li>Indexing a list is a little strange in R. There are 3 ways to index a list:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><code>x[[i]]</code>: returns the <span class="math inline">\(i^{th}\)</span> element of list <code>x</code></li>
+<li><code>x[i]</code>: returns a list with <span class="math inline">\(i^{th}\)</span> element as the only element
+<ul>
+<li>Can index using a vector: <code>x[ind.vec]</code> will return a list with elements indexed by indices in <code>ind.vec</code></li>
+</ul></li>
+<li><code>x$ind</code>: returns element named by <code>ind</code>. Python users can think of the names as keys.</li>
+</ol>
+<pre class="r"><code>x[[1]]</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>class(x[[1]])</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>x[1]</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3</code></pre>
+<pre class="r"><code>class(x[1])</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>x[c(1,2)]</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</code></pre>
+<pre class="r"><code># name elements in list
+names(x) &lt;- c(&quot;one&quot;, &quot;two&quot;)
+x</code></pre>
+<pre><code>## $one
+## [1] 1 2 3
+## 
+## $two
+## [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;</code></pre>
+<pre class="r"><code>x$one</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+</div>
+</div>
+<div id="matrices" class="section level2">
+<h2>Matrices</h2>
+<ul>
+<li><p>R’s two dimensional array that contains elements of the same atomic type. (We usually use matrices containing numeric elements.)</p></li>
+<li>Syntax for creating a matrix: <code>matrix(data, nrow, ncol, byrow , dimnames)</code>
+<ul>
+<li><code>data</code>: input vector</li>
+<li><code>nrow</code>/<code>ncol</code>: number of rows/columns</li>
+<li><code>byrow</code>: Fill matrix with input vector by row (default is fill by column)</li>
+<li><code>dimnames</code>: row and column names (We usually leave this blank.)</li>
+</ul></li>
+</ul>
+<pre class="r"><code># Create 2 x 3 matrix with elements 1 - 6
+mat &lt;- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
+mat</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<pre class="r"><code># Fill by row
+mat &lt;- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE)
+mat</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6</code></pre>
+<div id="indexing-1" class="section level3">
+<h3>Indexing</h3>
+<p>To index a list:</p>
+<ul>
+<li><code>mat[i,]</code>: <span class="math inline">\(i^{th}\)</span> row of <code>mat</code></li>
+<li><code>mat[,j]</code>: <span class="math inline">\(j^{th}\)</span> column of <code>mat</code></li>
+<li><code>mat[i,j]</code>: <span class="math inline">\((i,j)^{th}\)</span> element of <code>mat</code></li>
+</ul>
+<pre class="r"><code>mat[1,] # first row of mat</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>mat[,1] # first column of mat</code></pre>
+<pre><code>## [1] 1 4</code></pre>
+<pre class="r"><code>mat[1,3] # (1,3) element of mat</code></pre>
+<pre><code>## [1] 3</code></pre>
+<ul>
+<li>Can also index matrix with vectors</li>
+</ul>
+<pre class="r"><code>mat[,1:3] # first 3 columns of mat</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6</code></pre>
+</div>
+<div id="matrix-operations" class="section level3">
+<h3>Matrix Operations</h3>
+<ul>
+<li><code>A %*% B</code>: Matrix multiply A and B. (if <code>dim(A) = [m,n]</code> and <code>dim(B) = [n,l]</code>)</li>
+<li><code>A * B</code>: Multiply A and B element-wise</li>
+<li><code>A + B</code>, <code>A - B</code>, <code>A / B</code>: add, subtract, divide A and B element-wise</li>
+<li>You can only multiply/add/subtract/divide matrices of the same dimensions element-wise (unlike vectors).</li>
+</ul>
+<pre class="r"><code>A &lt;- matrix(1:4, nrow = 2, ncol = 2)
+B &lt;- matrix(1:6, nrow = 2, ncol = 3)
+A %*% B</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    7   15   23
+## [2,]   10   22   34</code></pre>
+<pre class="r"><code># A * B # This will give an error
+
+B &lt;- matrix(2:5, nrow = 2, ncol = 2)
+A + B</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    3    7
+## [2,]    5    9</code></pre>
+<pre class="r"><code>A / B</code></pre>
+<pre><code>##           [,1] [,2]
+## [1,] 0.5000000 0.75
+## [2,] 0.6666667 0.80</code></pre>
+</div>
+<div id="useful-functions" class="section level3">
+<h3>Useful functions</h3>
+<ul>
+<li><code>colSums</code>, <code>rowSums</code>, <code>colMeans</code>, <code>rowMeans</code>: returns vectors containing sum/mean of each column/row.</li>
+</ul>
+<pre class="r"><code>rowSums(A)</code></pre>
+<pre><code>## [1] 4 6</code></pre>
+<ul>
+<li><code>cbind</code>, <code>rbind</code>: bind matrices by column/row.</li>
+</ul>
+<pre class="r"><code>A &lt;- matrix(1:4, nrow = 2, ncol = 2)
+B &lt;- matrix(5:8, nrow = 2, ncol = 2)
+A</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4</code></pre>
+<pre class="r"><code>B</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    5    7
+## [2,]    6    8</code></pre>
+<pre class="r"><code>cbind(A,B)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    3    5    7
+## [2,]    2    4    6    8</code></pre>
+<pre class="r"><code>rbind(A,B)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+## [3,]    5    7
+## [4,]    6    8</code></pre>
+</div>
+</div>
+<div id="data-frames" class="section level2">
+<h2>Data Frames</h2>
+<ul>
+<li>A more structured matrix.</li>
+</ul>
+<p>To create a data frame: <code>data.frame(Var1 = var1.values, Var2 = var2.values, ...)</code></p>
+<pre class="r"><code># Create example data frame
+df &lt;- data.frame(Names = c(&quot;Yang&quot;, &quot;Daniel&quot;), Title = c(&quot;Instructor&quot;, &quot;GSI&quot;), Coolness = c(0, 100), Evilness = c(100, 0))
+# Jk hehe don&#39;t kill me. 
+
+df</code></pre>
+<pre><code>##    Names      Title Coolness Evilness
+## 1   Yang Instructor        0      100
+## 2 Daniel        GSI      100        0</code></pre>
+<ul>
+<li><code>summary(df)</code>: Statistical summary of columns of <code>df</code></li>
+</ul>
+<pre class="r"><code>summary(df)</code></pre>
+<pre><code>##     Names          Title      Coolness      Evilness  
+##  Daniel:1   GSI       :1   Min.   :  0   Min.   :  0  
+##  Yang  :1   Instructor:1   1st Qu.: 25   1st Qu.: 25  
+##                            Median : 50   Median : 50  
+##                            Mean   : 50   Mean   : 50  
+##                            3rd Qu.: 75   3rd Qu.: 75  
+##                            Max.   :100   Max.   :100</code></pre>
+<div id="reading-data" class="section level3">
+<h3>Reading data</h3>
+<ul>
+<li>In STATS 451, you will most likely be reading in data from text, csv, or RData files.</li>
+</ul>
+<p>Two functions for reading in data:</p>
+<ul>
+<li><code>read.csv(file_path, header = FALSE)</code>: read csv at file_path</li>
+<li><p><code>read.table(file_path, header = FALSE)</code>: read text file at file_path</p>
+<ul>
+<li><code>header</code>: If <code>TRUE</code>, file contains the names of the variables as its first line.</li>
+</ul></li>
+</ul>
+<p><span style="color:red">To be completed.</span></p>
+</div>
+<div id="saving-data" class="section level3">
+<h3>Saving data</h3>
+<p><span style="color:red"> To be updated.</span></p>
+</div>
+<div id="indexing-2" class="section level3">
+<h3>Indexing</h3>
+<p><span style="color:red">To be updated.</span></p>
+</div>
+</div>
+<div id="factors" class="section level2">
+<h2>Factors</h2>
+<p><span style="color:red">To be updated</span></p>
+</div>
+</div>
+<div id="packages-in-r" class="section level1">
+<h1>Packages in R</h1>
+<div id="installing-packages" class="section level2">
+<h2>Installing packages</h2>
+<ul>
+<li>Syntax for installing packages: <code>install.packages(pkg.name)</code></li>
+</ul>
+<pre class="r"><code>install.packages(&quot;ggplot2&quot;) # install ggplot2 </code></pre>
+</div>
+<div id="using-packages" class="section level2">
+<h2>Using packages</h2>
+<ul>
+<li>Loading packages: <code>library(pkg)</code></li>
+<li>Package help page: <code>help(pkg)</code></li>
+</ul>
+<pre class="r"><code>library(ggplot2) # load ggplot2</code></pre>
+</div>
+<div id="packages-used-in-stats-451" class="section level2">
+<h2>Packages used in STATS 451</h2>
+<p><span style="color:red">To be updated. </span></p>
+</div>
+</div>
+<div id="monte-carlo-sampling" class="section level1">
+<h1>Monte-Carlo Sampling</h1>
+<div id="simulating-random-variables" class="section level2">
+<h2>Simulating Random Variables</h2>
+<p><span style="color:red"> To be updated. </span></p>
+</div>
+</div>
+<div id="logicalsmissing-values" class="section level1">
+<h1>Logicals/Missing values</h1>
+<ul>
+<li>You will frequently encounter missing values (<code>NA</code>, <code>NULL</code>, <code>-Inf</code>, <code>Inf</code>) when you are working with data in R. For example, if you try to take the log of 0:</li>
+</ul>
+<pre class="r"><code>log(0)</code></pre>
+<pre><code>## [1] -Inf</code></pre>
+<p><span style="color:red"> To be completed. </span></p>
+</div>
+<div id="advanced-r-stuff" class="section level1">
+<h1>Advanced R Stuff</h1>
+<div id="applysapplylapplymapplytapply" class="section level2">
+<h2>apply/sapply/lapply/mapply/tapply</h2>
+<p><span style="color:red"> To be updated. </span></p>
+</div>
+</div>
+<div id="random" class="section level1">
+<h1>Random</h1>
+<ul>
+<li>Unlike in Python or C++, you may use periods in variable names. For example <code>stats.451</code> is a valid variable name. (I’m not a huge fan but it is considered good style in R to use periods instead of underscores. This probably makes no sense to you if you know Python/C++)</li>
+</ul>
+<!-- # Excercises  -->
+<!-- Create a function with  -->
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

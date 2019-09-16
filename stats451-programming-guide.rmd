@@ -1,0 +1,429 @@
+---
+title: "Programming Guide for STATS 451"
+author: "Daniel Iong"
+# date: "9/12/2019"
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Remarks
+
+* It seems like alot of you are proficient in programming but not necessarily familiar with R and are worried it may hinder your performance in this class. I tried to look for some R resources for you all but most of them might be too basic for those who know programming or included too much information about R that you do not necessarily need (although may be good to learn). Therefore, I created this no-nonsense guide that only includes concepts I think are essential/helpful for the course. I will try to draw parallels between Python/C++ and R whenever possible for those of you who are proficient in these languages. 
+
+* I will constantly update this guide as the course progresses and students ask me more questions about R. Most of the R functions you will use are closely tied to the statistical concepts that you learn about in lecture. Therefore, I will add them to this guide after you have learned about the concepts in lecture to not confuse/stress you all out.  
+
+* I have omitted programming concepts that are not specific to R like for loops, if statements, etc and can be easily googled. 
+
+* If you learned C++ by taking EECS 280/281, don't even stress out about the programming in this course. Come to office hours and teach me about C++ please. 
+
+* You may use Python for the homeworks but R may be worth learning because we will be using **stan** later in the course and in my opinion, it is easier to use in R. (There is a Python version of it though.)
+
+
+**tl;dr** Don't worry about the programming in this course. This guide includes most of the R concepts you need to know.
+
+# Data Types/Structures in R
+
+* R has 6 basic data types (character, numeric, integer, logical, complex). We will primarily be concerned with the numeric, logical, and integer data type.
+
+
+**Data Structures in R**
+
+1. atomic vector
+2. list
+3. matrix
+4. data frame
+5. factors
+
+We will discuss these one-by-one below. 
+
+## Atomic Vector 
+
+* These are kind of like lists in Python and arrays/vectors in C++. 
+
+* **Atomic** means they can only hold data of a single data type.
+
+To create an atomic vector, we use the function `c()`. The "c" here stands for combine or concatenate. 
+
+```{r}
+a <- c(1,2,3,4)
+```
+
+### Indexing/Subsetting
+
+* R uses one-based indexing so be careful of this if you are coming from a 0-based indexing language like Python or C++.
+
+To index an element in an (atomic) vector, we use `[]`. For example, to index the first element of `a`: 
+
+```{r}
+a[1]
+```
+
+To index a vector with a vector of indices:
+
+```{r}
+a[1:3] # Here 1:3 is the same as c(1, 2, 3). This will be discussed later. 
+```
+
+`a[-i]` will return `a` with the element in the $i^{th}$ index deleted. In general, `a[-index_vec]` will return `a` with the elements in the indices in `index_vec` deleted.
+
+```{r}
+a[-2]
+a[-(1:3)]
+```
+
+
+Alternatively, you can index vectors using logical statements. There are two ways to do this. 
+
+```{r}
+a[a < 3]
+which(a < 3)
+```
+
+### Useful vectors
+
+There are several functions in R that output useful vectors. Some of the ones that will be useful for this course are: `rep`, `seq`. 
+
+`rep` replicates a given object a specified amount of times. 
+
+```{r}
+rep(x = 2, times = 10) # or just rep(2, 10) 
+
+# Can also replicate vectors 
+rep(a, 2) # create vector with a replicated twice.
+```
+
+
+`seq` creates (incremented) sequences. It is like `range` in Python. However, the `seq` function is inclusive. (i.e. `range(1,10)` only returns a list with numbers 1 - 9, whereas `seq(1,10)` will return a vector with numbers 1- 10.)
+
+```{r}
+seq(from = 1, to = 10, by = 2)
+```
+
+To make sequence of consecutive numbers, you can use `a:b` (This is usually used in for loops). 
+
+```{r}
+1:10
+for (i in 1:4) {
+  print(i)
+}
+```
+
+
+### Vector operations 
+
+* You may add, subtract, multiply, divide vectors element-wise by using `+, -, *, /,`
+
+```{r}
+# create a vector and add it to a 
+b <- c(2, 3, 4, 5)
+a + b
+```
+
+* **BE CAREFUL:** In R, adding vectors of different lengths is valid although it gives a warning. The smaller vector is duplicated to match the length of the larger vector and then added to it. This is also true for other vector operations. 
+
+```{r}
+c <- c(2, 3, 4, 5, 6, 7, 8)
+a_plus_c <- a + c
+a_plus_c
+```
+
+In this example, `a + c = (1, 2, 3, 4, 1, 2, 3) + (2, ,3, 4, 5 ,6, 7, 8)`. 
+
+### Appending/Removing
+
+* The syntax for appending and removing elements isn't as nice as in Python.
+
+```{r}
+### To append
+# There is an append() function, but this method of appending suffices.
+a <- c(a, 5)
+a
+
+# Alternatively,
+a[6] <- 6
+a
+
+a <- c(a, 7:9) # can also append vectors to vectors
+a
+```
+
+
+```{r}
+# Remove second element in R 
+a <- a[-2]
+a
+
+# Remove first 3 elements in R
+a <- a[-(1:3)]
+a
+```
+
+
+### Misc.
+
+* Nesting vectors inside vectors will just create one large vector. In other words, (atomic) vectors are flat. 
+
+```{r}
+a <- c(1, 2, c(3, c(4)))
+a
+length(a)
+```
+
+* `length` gives you the length of the vector.
+
+```{r}
+a <- c(1,2,3,4)
+length(a)
+```
+
+
+## Lists 
+
+* Lists can hold elements of different types. Lists are like dictionaries in Python.
+* Lists are R's most flexible object, but it also uses the most memory.
+
+To create a list: 
+
+```{r}
+# Create empty list 
+x <- list()
+x
+```
+
+You can also create lists with specified values. 
+
+```{r}
+# Create list with one numerical vector and one character vector
+x <- list(c(1,2,3), c("one", "two", "three"))
+x
+```
+
+### Indexing 
+
+* Indexing a list is a little strange in R. There are 3 ways to index a list:
+
+1. `x[[i]]`: returns the $i^{th}$ element of list `x` 
+2. `x[i]`: returns a list with $i^{th}$ element as the only element
+    * Can index using a vector: `x[ind.vec]` will return a list with elements indexed by indices in `ind.vec`
+3. `x$ind`: returns element named by `ind`. Python users can think of the names as keys.
+
+```{r}
+x[[1]]
+class(x[[1]])
+
+x[1]
+class(x[1])
+
+x[c(1,2)]
+```
+
+
+```{r}
+# name elements in list
+names(x) <- c("one", "two")
+x
+
+x$one
+```
+
+
+## Matrices 
+
+* R's two dimensional array that contains elements of the same atomic type. (We usually use matrices containing numeric elements.)
+
+* Syntax for creating a matrix: `matrix(data, nrow, ncol, byrow , dimnames)`
+  * `data`: input vector
+  * `nrow`/`ncol`: number of rows/columns
+  * `byrow`: Fill matrix with input vector by row (default is fill by column)
+  * `dimnames`: row and column names (We usually leave this blank.)
+  
+
+```{r}
+# Create 2 x 3 matrix with elements 1 - 6
+mat <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
+mat
+
+# Fill by row
+mat <- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE)
+mat
+```
+
+### Indexing 
+
+To index a list:
+
+* `mat[i,]`: $i^{th}$ row of `mat`
+* `mat[,j]`: $j^{th}$ column of `mat`
+* `mat[i,j]`: $(i,j)^{th}$ element of `mat`
+
+```{r}
+mat[1,] # first row of mat
+mat[,1] # first column of mat
+mat[1,3] # (1,3) element of mat
+```
+
+* Can also index matrix with vectors 
+
+```{r}
+mat[,1:3] # first 3 columns of mat
+```
+
+
+### Matrix Operations
+
+* `A %*% B`: Matrix multiply A and B. (if `dim(A) = [m,n]` and `dim(B) = [n,l]`) 
+* `A * B`: Multiply A and B element-wise
+* `A + B`, `A - B`, `A / B`: add, subtract, divide A and B element-wise
+* You can only multiply/add/subtract/divide matrices of the same dimensions element-wise (unlike vectors). 
+
+```{r}
+A <- matrix(1:4, nrow = 2, ncol = 2)
+B <- matrix(1:6, nrow = 2, ncol = 3)
+A %*% B
+
+# A * B # This will give an error
+
+B <- matrix(2:5, nrow = 2, ncol = 2)
+A + B
+A / B
+```
+
+
+### Useful functions
+
+* `colSums`, `rowSums`, `colMeans`, `rowMeans`: returns vectors containing sum/mean of each column/row.
+  
+```{r}
+rowSums(A)
+```
+
+* `cbind`, `rbind`: bind matrices by column/row.
+
+```{r}
+A <- matrix(1:4, nrow = 2, ncol = 2)
+B <- matrix(5:8, nrow = 2, ncol = 2)
+A
+B
+
+cbind(A,B)
+rbind(A,B)
+```
+
+
+## Data Frames 
+
+* A more structured matrix.
+
+To create a data frame: `data.frame(Var1 = var1.values, Var2 = var2.values, ...)`
+
+```{r}
+# Create example data frame
+df <- data.frame(Names = c("Yang", "Daniel"), Title = c("Instructor", "GSI"), Coolness = c(0, 100), Evilness = c(100, 0))
+# Jk hehe don't kill me. 
+
+df
+```
+
+* `summary(df)`: Statistical summary of columns of `df`
+
+```{r}
+summary(df)
+```
+
+### Reading data
+
+* In STATS 451, you will most likely be reading in data from text, csv, or RData files. 
+
+Two functions for reading in data: 
+
+* `read.csv(file_path, header = FALSE)`: read csv at file_path
+* `read.table(file_path, header = FALSE)`: read text file at file_path
+
+  * `header`: If `TRUE`, file contains the names of the variables as its first line.
+
+<span style="color:red">To be completed.</span>
+
+### Saving data
+
+<span style="color:red"> To be updated.</span> 
+
+
+### Indexing
+
+<span style="color:red">To be updated.</span>
+
+
+## Factors
+
+<span style="color:red">To be updated</span>
+
+
+# Packages in R 
+
+## Installing packages
+
+* Syntax for installing packages: `install.packages(pkg.name)`
+
+```{r, eval=FALSE}
+install.packages("ggplot2") # install ggplot2 
+```
+
+## Using packages 
+
+* Loading packages: `library(pkg)`
+* Package help page: `help(pkg)`
+
+```{r, eval = FALSE}
+library(ggplot2) # load ggplot2
+```
+
+
+## Packages used in STATS 451
+
+<span style="color:red">To be updated.
+</span>
+
+# Monte-Carlo Sampling
+
+## Simulating Random Variables
+
+<span style="color:red">
+To be updated.
+</span>
+
+# Logicals/Missing values
+
+* You will frequently encounter missing values (`NA`, `NULL`, `-Inf`, `Inf`) when you are working with data in R. For example, if you try to take the log of 0:
+
+```{r}
+log(0)
+```
+
+<span style="color:red">
+To be completed.
+</span>
+
+# Advanced R Stuff
+
+## apply/sapply/lapply/mapply/tapply
+
+<span style="color:red">
+To be updated.
+</span>
+
+# Random
+
+* Unlike in Python or C++, you may use periods in variable names. For example `stats.451` is a valid variable name. (I'm not a huge fan but it is considered good style in R to use periods instead of underscores. This probably makes no sense to you if you know Python/C++)
+
+
+
+<!-- # Excercises  -->
+
+<!-- Create a function with  -->
