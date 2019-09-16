@@ -2,7 +2,8 @@ name: "STATS 451"
 navbar:
   title: "STATS 451"
   left:
-    
+    - text: "Homework Policy"
+      href: homework-policy.html
     - text: "R Guide"
       href: stats451-programming-guide.html
 output_dir: "."
