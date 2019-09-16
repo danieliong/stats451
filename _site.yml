@@ -1,6 +1,6 @@
-name: "STATS 451"
+name: "STATS 451: Bayesian Data Analysis"
 navbar:
-  title: "STATS 451: Bayesian Data Analysis"
+  title: "STATS 451"
   left:
     - text: "Homework Policy"
       href: homework-policy.html
