@@ -6,7 +6,7 @@ output:
   html_document:
     toc: true
     toc_float:
-      collapsed: true
+      collapsed: false
 ---
 
 ```{r setup, include=FALSE}
@@ -397,6 +397,9 @@ library(ggplot2) # load ggplot2
 <span style="color:red">
 To be updated.
 </span>
+
+
+# Plotting
 
 # Logicals/Missing values
 
