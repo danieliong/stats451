@@ -1,0 +1,41 @@
+---
+title: "Homework Policy"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+**Three options for submitting homework**
+
+1. Drop off a hard copy (handwritten or typed) of your answers to a box outside of Prof. Chen's office (445E West Hall). *Hard-copy submissions will receive feedback from me and will be handed back at the end of lecture.*
+2. Submit a PDF on Canvas.
+3. Submit a zipped folder containing scanned photos on Canvas.
+
+*(Subject to change after HW 1 when we start programming for homework. Will be updated later.)*
+
+----
+
+# Grading Criteria
+
+* Correctness of derivations: 20%
+* Correctness of results: 40%
+* Code: 30% 
+* Writeup: 10% 
+
+----
+
+# Late Homework/Grading-related Questions
+
+* Dispute of homework score MUST be within 7 business days of homework return.
+
+* Homework-grading-related questions are resolved at GSI or instructor’s office hours.
+
+* **Late homework policy**: 
+
+  * If “Submission Date - Homework Deadline > 7 days”: Grade is 0. 
+  * Otherwise, each student is allowed one late homework (≤ 7 days) throughout the semester without penalty. 
+  * Extra late homework (late for less than 7 days) will receive half of the total grade. 
+  * Medical reasons for late homework: a doctor’s note and a signature from your graduate (or undergraduate) advisor are needed.

@@ -1,0 +1,11 @@
+---
+title: "Course Policy"
+output: html_document
+---
+
+* Q & A are handled ONLY on Canvas and office hours, thus please avoid asking technical questions via email. Students are encouraged to help solving each other’s problems on Canvas. Students are encouraged to share notes on Canvas. Bonus points (up to 5%) will be given according to students’ involvement and contributions on Canvas.
+
+* Please come to the GSI or the instructor’s office hours if you have any questions that you don’t want to post on Canvas discussions. Emails sent to the GSI or instructor about (a) contents that can be found on Canvas, (b) technical questions including bugs in code, or (c) asking for homework / final project extensions (except medical conditions) won’t be replied.
+
+* Proper collaboration is highly recommended. However, you must recognize your collaborators by writing down their names clearly in the front when handing in your homework or final project. Refer to the Academic Misconduct for policies of plagiarism. The instructor will follow the university honor code policy strictly. Lack of knowledge of the academic honesty policy is not a reasonable explanation for a violation. If you discuss with other students about homework, you are supposed to write down your own homework/code independently after the discussions. Under any circumstances, two exact copies of homework/code are considered to be plagiarism. Students are under their own risk of any type of penalty from the university in violating academic honesty.
+
