@@ -6,7 +6,25 @@ output:
     fig_width: 1
 ---
 
-Website for STATS 451 Fall '19.
+# Course Overview
+
+This course offers a basic introduction to Monte Carlo methods and Bayesian modeling & computational techniques to prepare undergraduate students (statistics and data science majors and minors) and graduate students in fields other than statistics to apply Bayesian methods in practice. The course is application-oriented and addresses practical skills for principled data analysis.
+
+Grades are based on weekly quizzes on Canvas, biweekly homework, one midterm exam, and one final project (groups of 2-4). For the final project, students are expected to apply Bayesian methods to analyze real data and write up a thorough report on the modeling, computation, and interpretation of the statistical analysis.
+
+**Prerequisites**: (STATS 412 or STATS 425) and (STATS 306 or EECS 280).
+
+**Textbook**: Kruschke, John. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.
+
+# Office Hours and Contact Information 
+
+**Instructor**: [Yang Chen](https://lsa.umich.edu/stats/people/faculty/YangChen.html)
+  
+  * **Office Hours**: Tuesday 5-7pm in 445E West Hall 
+
+**GSI**: Daniel Iong
+
+  * **Ofice Hours**: Monday 10-11am, Thursday 7-9pm @ 2165 USB
 
 
 <!-- ---- -->

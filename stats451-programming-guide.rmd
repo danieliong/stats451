@@ -1,5 +1,5 @@
 ---
-title: "Programming Guide for STATS 451"
+title: "R Programming Guide for STATS 451"
 author: "Daniel Iong"
 # date: "9/12/2019"
 output: 
