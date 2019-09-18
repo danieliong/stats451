@@ -797,11 +797,52 @@ df</code></pre>
 <h1>Monte-Carlo Sampling</h1>
 <div id="simulating-random-variables" class="section level2">
 <h2>Simulating Random Variables</h2>
-<p><span style="color:red"> To be updated. </span></p>
+<p>Helpful R functions:</p>
+<ul>
+<li>Simulate Normal: <code>rnorm(n, mean = 0, sd = 1)</code></li>
+<li>Simulate Binomial: <code>rbinom(n, size, prob)</code></li>
+<li>Simulate Uniform: <code>runif(n, min = 0, max = 1)</code></li>
+<li>Simulate Exponential: <code>rexp(n, rate = 1)</code></li>
+</ul>
+</div>
+<div id="approximating-expectations" class="section level2">
+<h2>Approximating Expectations</h2>
+<p>Let <span class="math inline">\(X\)</span> be a random variable with density <span class="math inline">\(f(x)\)</span>. Suppose you want to approximate <span class="math inline">\(E[g(X)]\)</span> for some function <span class="math inline">\(g\)</span> (e.g. mean, variance, etc). One way to do this is with the following procedure:</p>
+<ol style="list-style-type: decimal">
+<li>Simulate <span class="math inline">\(X_1, \dots, X_N \sim f(x)\)</span> for large <span class="math inline">\(N\)</span>.</li>
+<li>Approximate expectation with <span class="math display">\[E[g(X)] = \int g(x) f(x) dx \approx \frac{1}{N} \sum_{i=1}^N g(X_i)\]</span></li>
+</ol>
+<ul>
+<li><em>(NOT REQUIRED FOR THIS COURSE)</em> The theoretical justification for this procedure is the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">Law of Large Numbers</a> and <a href="https://en.wikipedia.org/wiki/Continuous_mapping_theorem">Continuous Mapping Theorem</a></li>
+</ul>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<p><strong>Example 1</strong></p>
+<p>Let <span class="math inline">\(X \sim N(2, 5)\)</span> and suppose I want to approximate <span class="math inline">\(E[X^2]\)</span>. We know that <span class="math inline">\(E[X^2] = Var(X) + [E(X)]^2 = 5^2 + 2^2 = 29\)</span>.</p>
+<pre class="r"><code>N &lt;- 1000000
+X.samples &lt;- rnorm(N, 2, 5) # Draw samples from N(2,5)
+E_X2.approx &lt;- mean(X.samples^2) # Take mean of square of samples 
+E_X2.approx</code></pre>
+<pre><code>## [1] 29.03694</code></pre>
+</div>
+</div>
+<div id="approximating-distributions" class="section level2">
+<h2>Approximating Distributions</h2>
+<p>You can also use Monte-Carlo sampling to approximate distributions. Some canonical examples of distributions you may want to approximate are sampling distributions of test statistics (e.g. sample mean).</p>
+<p>If you are reading this, you have probably heard of the Central Limit Theorem (CLT). The Central Limit Theorem tells us the sampling distribution of the sample mean is Normal. We can verify this with Monte-Carlo sampling.</p>
+<p><em>I will post the code for this after Quiz 3. I want you all to try to code it by yourself.</em></p>
 </div>
 </div>
 <div id="plotting" class="section level1">
 <h1>Plotting</h1>
+<p><strong>Helpful R functions</strong></p>
+<ul>
+<li>Plot histogram: <code>hist(x)</code></li>
+<li>Plot scatterplot: <code>plot(x,y)</code>
+<ul>
+<li>The <code>plot</code> function is actually very general and what it plots depends on the the class of the input. However, in most cases, you will just use it to plot scatter plots.</li>
+</ul></li>
+</ul>
 </div>
 <div id="logicalsmissing-values" class="section level1">
 <h1>Logicals/Missing values</h1>

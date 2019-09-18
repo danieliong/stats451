@@ -394,12 +394,52 @@ library(ggplot2) # load ggplot2
 
 ## Simulating Random Variables
 
-<span style="color:red">
-To be updated.
-</span>
+Helpful R functions:
+
+* Simulate Normal: `rnorm(n, mean = 0, sd = 1)`
+* Simulate Binomial: `rbinom(n, size, prob)`
+* Simulate Uniform: `runif(n, min = 0, max = 1)`
+* Simulate Exponential: `rexp(n, rate = 1)`
+
+## Approximating Expectations
+
+Let $X$ be a random variable with density $f(x)$. Suppose you want to approximate $E[g(X)]$ for some function $g$ (e.g. mean, variance, etc). One way to do this is with the following procedure:
+
+1. Simulate $X_1, \dots, X_N \sim f(x)$ for large $N$.
+2. Approximate expectation with 
+$$E[g(X)] = \int g(x) f(x) dx \approx \frac{1}{N} \sum_{i=1}^N g(X_i)$$
+* *(NOT REQUIRED FOR THIS COURSE)* The theoretical justification for this procedure is the [Law of Large Numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers) and [Continuous Mapping Theorem](https://en.wikipedia.org/wiki/Continuous_mapping_theorem)
+
+### Examples 
+
+**Example 1**
+
+Let $X \sim N(2, 5)$ and suppose I want to approximate $E[X^2]$. We know that $E[X^2] = Var(X) + [E(X)]^2 = 5^2 + 2^2 = 29$. 
+
+```{r, cache = TRUE}
+N <- 1000000
+X.samples <- rnorm(N, 2, 5) # Draw samples from N(2,5)
+E_X2.approx <- mean(X.samples^2) # Take mean of square of samples 
+E_X2.approx
+```
+
+## Approximating Distributions
+
+You can also use Monte-Carlo sampling to approximate distributions. Some canonical examples of distributions you may want to approximate are sampling distributions of test statistics (e.g. sample mean).
+
+If you are reading this, you have probably heard of the Central Limit Theorem (CLT). The Central Limit Theorem tells us the sampling distribution of the sample mean is Normal. We can verify this with Monte-Carlo sampling.  
+
+*I will post the code for this after Quiz 3. I want you all to try to code it by yourself first.*
 
 
 # Plotting
+
+**Helpful R functions**
+
+* Plot histogram: `hist(x)` 
+* Plot scatterplot: `plot(x,y)`
+  * The `plot` function is actually very general and what it plots depends on the the class of the input. However, in most cases, you will just use it to plot scatter plots.  
+  
 
 # Logicals/Missing values
 
