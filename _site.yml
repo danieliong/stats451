@@ -2,6 +2,10 @@ name: "STATS 451: Bayesian Data Analysis"
 navbar:
   title: "STATS 451"
   left:
+    - text: Canvas
+      href: https://umich.instructure.com/courses/317162
+    - text: Piazza
+      href: https://piazza.com/class/k08cua866ct5l2
     - text: "Homework Policy"
       href: homework-policy.html
     - text: "R Guide"
