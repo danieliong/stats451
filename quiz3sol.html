@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Daniel Iong" />
 
 
-<title>STATS 451: Bayesian Data Analysis</title>
+<title>Quiz 3 Solutions</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -310,74 +311,47 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">STATS 451: Bayesian Data Analysis</h1>
+<h1 class="title toc-ignore">Quiz 3 Solutions</h1>
+<h4 class="author">Daniel Iong</h4>
 
 </div>
 
 
-<hr />
-<div id="course-overview" class="section level1">
-<h1>Course Overview</h1>
-<p>This course offers a basic introduction to Monte Carlo methods and Bayesian modeling &amp; computational techniques to prepare undergraduate students (statistics and data science majors and minors) and graduate students in fields other than statistics to apply Bayesian methods in practice. The course is application-oriented and addresses practical skills for principled data analysis.</p>
-<p>Grades are based on weekly quizzes on Canvas, biweekly homework, one midterm exam, and one final project (groups of 2-4). For the final project, students are expected to apply Bayesian methods to analyze real data and write up a thorough report on the modeling, computation, and interpretation of the statistical analysis.</p>
-<p><strong>Prerequisites</strong>: (STATS 412 or STATS 425) and (STATS 306 or EECS 280).</p>
-<p><strong>Textbook</strong>: <a href="https://www.sciencedirect.com/book/9780124058880/doing-bayesian-data-analysis">Kruschke, John. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.</a></p>
-<hr />
-</div>
-<div id="office-hours-and-contact-information" class="section level1">
-<h1>Office Hours and Contact Information</h1>
-<p><strong>Instructor</strong>: <a href="https://lsa.umich.edu/stats/people/faculty/YangChen.html">Yang Chen</a></p>
-<ul>
-<li><strong>Office Hours</strong>: Tuesday 5-7pm in 445E West Hall</li>
-</ul>
-<p><strong>GSI</strong>: Daniel Iong</p>
-<ul>
-<li><strong>Ofice Hours</strong>: Monday 10-11am, Thursday 7-9pm @ 2165 USB</li>
-</ul>
-<hr />
-</div>
-<div id="course-outline" class="section level1">
-<h1>Course Outline</h1>
-<ul>
-<li>Monte Carlo Methods
-<ul>
-<li>Monte Carlo Simulations</li>
-</ul></li>
-<li>Basics of Bayesian Modeling and Inference
-<ul>
-<li>Basic Concepts: Prior, Likelihood, Posterior</li>
-<li>Examples: Single and Multi Parameter Models</li>
-<li>Bayesian Hierarchical Model and Shrinkage Estimators</li>
-</ul></li>
-<li>Computational Methods
-<ul>
-<li>Markov chain Monte Carlo Methods</li>
-</ul></li>
-<li><p>Usage of the STAN Package</p></li>
-<li><p>Bayesian Inference in Practice</p></li>
-</ul>
-<hr />
-</div>
-<div id="course-policy" class="section level1">
-<h1>Course Policy</h1>
-<ul>
-<li><p>Q &amp; A are handled ONLY on Canvas and office hours, thus please avoid asking technical questions via email. Students are encouraged to help solving each other’s problems on Canvas. Students are encouraged to share notes on Canvas. Bonus points (up to 5%) will be given according to students’ involvement and contributions on Canvas.</p></li>
-<li><p>Please come to the GSI or the instructor’s office hours if you have any questions that you don’t want to post on Canvas discussions. Emails sent to the GSI or instructor about (a) contents that can be found on Canvas, (b) technical questions including bugs in code, or (c) asking for homework / final project extensions (except medical conditions) won’t be replied.</p></li>
-<li><p>Proper collaboration is highly recommended. However, you must recognize your collaborators by writing down their names clearly in the front when handing in your homework or final project. Refer to the Academic Misconduct for policies of plagiarism. The instructor will follow the university honor code policy strictly. Lack of knowledge of the academic honesty policy is not a reasonable explanation for a violation. If you discuss with other students about homework, you are supposed to write down your own homework/code independently after the discussions. Under any circumstances, two exact copies of homework/code are considered to be plagiarism. Students are under their own risk of any type of penalty from the university in violating academic honesty.</p></li>
-</ul>
-<hr />
-<div id="academic-misconduct" class="section level2">
-<h2>Academic Misconduct</h2>
-<p>The University of Michigan community functions best when its members treat one another with honesty, fairness, respect, and trust. The College of LSA promotes the assumption of personal responsibility and integrity, and prohibits all forms of academic dishonesty and misconduct. All cases of academic misconduct will be referred to the Office of the Assistant Dean for Undergraduate Education. Being found responsible for academic misconduct will usually result in a grade sanction, in addition to any sanction from the College. For more information, including examples of behaviors that are considered academic misconduct and potential sanctions, please see www.lsa.umich.edu/academicintegrity.</p>
-</div>
-<div id="accommodations-for-students-with-disabilities" class="section level2">
-<h2>Accommodations for Students with Disabilities</h2>
-<p>If you think you need an accommodation for a disability, please let me know at your earliest con- venience. Some aspects of this course, the assignments, the in-class activities, and the way the course is usually taught may be modified to facilitate your participation and progress. As soon as you make me aware of your needs, we can work with the Services for Students with Disabili- ties (SSD) office to help us determine appropriate academic accommodations. SSD (734-763-3000; <a href="http://ssd.umich.edu" class="uri">http://ssd.umich.edu</a>) typically recommends accommodations through a Verified Individualized Services and Accommodations (VISA) form. Any information you provide is private and confiden- tial and will be treated as such.</p>
-</div>
-<div id="other-resources" class="section level2">
-<h2>Other resources</h2>
-<p>As a student, you may experience a range of issues that can negatively impact your learning, such as anxiety, depression, interpersonal or sexual violence, difficulty eating or sleeping, loss/grief, and/or alcohol/drug problems. These mental health concerns or stressful events may lead to diminished academic performance and affect your ability to participate in day-to-day activities. In order to support you during such challenging times, the University of Michigan provides a number of confidential resources to all enrolled students, including Counseling and Psychological Services (CAPS) (734.764.8312), Sexual Assault Prevention and Awareness Center (SAPAC) (24-Hour Crisis Line: 734.936.3333), Psychiatric Emergency Services (734-996-4747), and Services for Students with Disabilities (734.763.3000; 734.615.4461 [TDD]; 734.619.6661 [VP]).</p>
-</div>
+<div id="quiz-3" class="section level1">
+<h1>Quiz 3</h1>
+<p>Use Monte-Carlo sampling to answer the following question:</p>
+<p>Let <span class="math inline">\(X_1, \dots, X_n\)</span> be Exponential(5) random variables and <span class="math inline">\(\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i\)</span>. If <span class="math inline">\(n\)</span> is large,</p>
+<ol style="list-style-type: decimal">
+<li>What is <span class="math inline">\(E[\log(\bar{X}_n)]\)</span> (approximately)?</li>
+<li>What is the (approximate) distribution of <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big]\)</span>?</li>
+</ol>
+<pre class="r"><code>exp.rate &lt;- 5 # Exponential distribution rate
+N.mc &lt;- 50000 # Number of Monte-Carlo samples 
+N.samples &lt;- 100000
+xbar.vec &lt;- c() # Vector containing sample means 
+for (i in 1:N.mc) {
+  exp.samples &lt;- rexp(N.samples, exp.rate) # Sample from Exp(exp.rate) N.samples times
+  samp.mean &lt;- mean(exp.samples) # Calculate sample mean 
+  xbar.vec &lt;- c(xbar.vec, samp.mean) # append sample mean to xbar.vec
+}</code></pre>
+<pre class="r"><code># 1.
+log_xbar.mean &lt;- mean(log(xbar.vec)) # Approximate distribution mean
+log_xbar.mean</code></pre>
+<pre><code>## [1] -1.609448</code></pre>
+<pre class="r"><code># 2.
+hist(log(xbar.vec)) # Histogram of log of sample means </code></pre>
+<p><img src="quiz3sol_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>var(sqrt(N.samples) * (log(xbar.vec) - log_xbar.mean)) # Approximate distribution variance</code></pre>
+<pre><code>## [1] 1.003449</code></pre>
+<p>This question can also be answered analytically using the delta method.</p>
+<p><span class="math inline">\(E[\log(\bar{X}_n)] = \log(1/5) =\)</span> -1.6094379</p>
+<p><span class="math display">\[\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \Rightarrow N \Big(0, \sigma^2 [\log(\mu)&#39;]^2 \Big) = N \Big( 0, \frac{1}{5^2} * 5^2 = 1 \Big)\]</span> <strong>Answer Choices</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = -1.61\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 1)\)</span></p></li>
+<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = 0.62\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 1)\)</span></p></li>
+<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = -1.61\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 0.04)\)</span></p></li>
+<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = 0.62\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 0.04)\)</span></p></li>
+</ol>
 </div>
 
 

@@ -1,0 +1,10 @@
+---
+title: "Quiz Solutions"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[Quiz 3](https://danieliong.github.io/stats451/quiz3sol_encrypted.html)
