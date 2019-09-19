@@ -7,4 +7,4 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-[Quiz 3](https://danieliong.github.io/stats451/quiz3sol_encrypted.html)
+[Quiz 3](quiz3sol_encrypted.html)

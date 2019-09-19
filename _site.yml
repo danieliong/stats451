@@ -8,7 +8,7 @@ navbar:
       href: https://piazza.com/class/k08cua866ct5l2
     - text: "Homework Policy"
       href: homework-policy.html
-    - text: "Quiz/HW Solutions"
+    - text: "Quiz Solutions"
       href: quizsol.html
     - text: "R Guide"
       href: r-programming-guide.html
