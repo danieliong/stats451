@@ -317,8 +317,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="quiz-3" class="section level1">
-<h1>Quiz 3</h1>
 <p>Use Monte-Carlo sampling to answer the following question:</p>
 <p>Let <span class="math inline">\(X_1, \dots, X_n\)</span> be Exponential(5) random variables and <span class="math inline">\(\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i\)</span>. If <span class="math inline">\(n\)</span> is large,</p>
 <ol style="list-style-type: decimal">
@@ -339,20 +337,18 @@ log_xbar.mean &lt;- mean(log(xbar.vec)) # Approximate distribution mean
 log_xbar.mean</code></pre>
 <pre><code>## [1] -1.609448</code></pre>
 <pre class="r"><code># 2.
-hist(log(xbar.vec)) # Histogram of log of sample means </code></pre>
-<p><img src="quiz3sol_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+hist(sqrt(N.samples) * (log(xbar.vec) - log_xbar.mean)) # Histogram of log of sample means </code></pre>
+<p><img src="quiz3sol_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>var(sqrt(N.samples) * (log(xbar.vec) - log_xbar.mean)) # Approximate distribution variance</code></pre>
 <pre><code>## [1] 1.003449</code></pre>
-<p>This question can also be answered analytically using the delta method.</p>
+<p><strong>Remarks</strong></p>
+<ul>
+<li>This question should give you an idea of the level of R programming required for this course. The question is conceptually difficult but not too difficult to code.</li>
+</ul>
+<hr />
+<p><strong>NOT REQUIRED FOR THIS COURSE</strong>: This question can also be answered analytically using the <a href="https://en.wikipedia.org/wiki/Delta_method">delta method</a>.</p>
 <p><span class="math inline">\(E[\log(\bar{X}_n)] = \log(1/5) =\)</span> -1.6094379</p>
-<p><span class="math display">\[\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \Rightarrow N \Big(0, \sigma^2 [\log(\mu)&#39;]^2 \Big) = N \Big( 0, \frac{1}{5^2} * 5^2 = 1 \Big)\]</span> <strong>Answer Choices</strong></p>
-<ol style="list-style-type: lower-alpha">
-<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = -1.61\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 1)\)</span></p></li>
-<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = 0.62\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 1)\)</span></p></li>
-<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = -1.61\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 0.04)\)</span></p></li>
-<li><p><span class="math inline">\(E[\log(\bar{X}_n)] = 0.62\)</span>, <span class="math inline">\(\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \sim N(0, 0.04)\)</span></p></li>
-</ol>
-</div>
+<p><span class="math display">\[\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \overset{\mathcal{D}}{\rightarrow} N \Big(0, \sigma^2 [\log(\mu)&#39;]^2 \Big) = N \Big( 0, \frac{1}{5^2} * 5^2 = 1 \Big)\]</span></p>
 
 
 
