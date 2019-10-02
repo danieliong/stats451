@@ -6,6 +6,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(reticulate)
 ```
 
 Use Monte-Carlo sampling to answer the following question:
@@ -50,6 +52,13 @@ var(sqrt(N.samples) * (log(xbar.vec) - log_xbar.mean)) # Approximate distributio
 $E[\log(\bar{X}_n)] = \log(1/5) =$ `r log((1/5))`
 
 $$\sqrt{n} \big[ \log(\bar{X}_n) - E[\log(\bar{X}_n)] \big] \overset{\mathcal{D}}{\rightarrow} N \Big(0, \sigma^2 [\log(\mu)']^2 \Big) = N \Big( 0, \frac{1}{5^2} * 5^2 = 1 \Big)$$
+
+
+
+
+
+# Python Solution
+
 
 
 
